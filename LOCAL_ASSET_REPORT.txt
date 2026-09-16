@@ -1,0 +1,6 @@
+Self-contained asset preparation
+Media files copied: 108
+Remote image URLs replaced: 106
+Google font files downloaded: 10
+Remix Icon font files downloaded: 5
+Unmatched Readdy image URLs: 0

@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #0A0A0A;
+  }
+
+  body {
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    background-color: #0A0A0A;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0A0A0A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #14B8A6;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2DD4BF;
+  }
+}
+
+@layer components {
+  .teal-gradient-text {
+    background: linear-gradient(135deg, #14B8A6, #2DD4BF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .teal-glow-border {
+    border: 1px solid rgba(20, 184, 166, 0.3);
+    box-shadow: 0 0 30px rgba(20, 184, 166, 0.08);
+  }
+
+  .card-hover {
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 80px rgba(20, 184, 166, 0.15);
+    border-color: rgba(20, 184, 166, 0.5);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #14B8A6, #0D9488);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2DD4BF, #14B8A6);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .btn-primary:hover::after {
+    opacity: 1;
+  }
+
+  .btn-primary span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-outline {
+    border: 1.5px solid rgba(20, 184, 166, 0.6);
+    color: #14B8A6;
+    transition: all 0.25s ease;
+  }
+
+  .btn-outline:hover {
+    background: rgba(20, 184, 166, 0.1);
+    border-color: #14B8A6;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #14B8A6;
+  }
+
+  .animated-grid {
+    background-image: linear-gradient(rgba(20, 184, 166, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 184, 166, 0.07) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: gridScroll 12s linear infinite;
+  }
+
+  .glass-card {
+    background: rgba(17, 17, 17, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+@keyframes gridScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 80px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.progress-bar-animated {
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-grayscale {
+  filter: grayscale(60%);
+  transition: filter 0.4s ease;
+}
+
+.img-grayscale:hover {
+  filter: grayscale(0%);
+}

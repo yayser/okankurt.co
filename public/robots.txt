@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /portfolio
+Allow: /project/
+
+Sitemap: https://okankurt.co/sitemap.xml

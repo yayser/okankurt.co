@@ -348,7 +348,7 @@ export const projects: Project[] = [
     duration: "Life Long",
     storyContent: [
       { type: "text", value: "Have you ever had a moment that changed everything?" },
-      { type: "text", value: "Well, I had a few, and fortunately the first one came at the age of 7 when I watched my dad upgrade my toy car. He was a self-taught electrical technician. Actually, not officially, but he knew whatever he needed to know to be an electrical technician, except maths. Because he couldn't get a proper education after primary school, he couldn't pass the technician exams. Yet he could open up any broken TV, find the faulty part, and fix it." },
+      { type: "text", value: "Well, I had a few, and fortunately the first one came at the age of 7 when I watched my dad upgrade my toy car. He was a self-taught electrical technician. He had a natural talent with electronics — he could open up any broken TV, find the problem, and fix it." },
       { type: "text", value: "So he added a tiny light bulb that lit up as my toy car went forward. I was amazed by it and was soo happy. So he made me another small light bulb attached to a single battery. It was like a tiny magical thing that shines light. I was captivated. I remember taking it and going directly under the table to see in the dark." },
       { type: "text", value: "That simple act sparked a fire in me. It showed me that things don't have to be the way they were — we could change them as we like!" },
       { type: "text", value: "That thought led me to open a few more toys and things at home — some of which led to memorable responses from my mother, i.e., flying slippers and a few groundings \uD83D\uDE0A Nevertheless, I’m grateful to my parents, as they were very supportive of my “experiments.”" },

@@ -11,7 +11,7 @@ export default function AboutSection() {
               <div className="relative overflow-hidden rounded-2xl aspect-[4/5] border border-teal-500/20">
                 <img
                   src="/media/083_d5c8213f27dbf0cd9c6f8e1f280bd24c.jpeg"
-                  alt="Emir Yilmaz – Mechatronics Engineer"
+                  alt="Okan Kurt – Mechatronics Engineer"
                   className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-800/40 to-transparent" />

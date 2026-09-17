@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HeroSection() {
+  const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVideoReady(true), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleScrollDown = () => {
     const el = document.getElementById("portfolio");
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -23,6 +31,13 @@ export default function HeroSection() {
             border: "none",
             pointerEvents: "none",
           }}
+        />
+
+        {/* Loading cover — hides YouTube's control/play icon flash before autoplay kicks in */}
+        <div
+          className={`absolute inset-0 bg-dark-800 pointer-events-none transition-opacity duration-700 ${
+            videoReady ? "opacity-0" : "opacity-100"
+          }`}
         />
 
         {/* Dark overlay */}

@@ -12,7 +12,7 @@ export default function HeroSection() {
       <div className="relative w-full lg:w-[55%] h-[50vh] lg:h-auto overflow-hidden">
         {/* YouTube iframe — cover fill trick */}
         <iframe
-          src="https://www.youtube.com/embed/2X4pdNTG-PU?autoplay=1&mute=1&loop=1&playlist=2X4pdNTG-PU&controls=1&rel=0&modestbranding=1&playsinline=1&showinfo=0&enablejsapi=1&origin=https://okankurt.co"
+          src="https://www.youtube.com/embed/2X4pdNTG-PU?autoplay=1&mute=1&loop=1&playlist=2X4pdNTG-PU&controls=0&rel=0&modestbranding=1&playsinline=1&showinfo=0&disablekb=1&iv_load_policy=3&enablejsapi=1&origin=https://okankurt.co"
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
           allowFullScreen
           title="Hero background video"

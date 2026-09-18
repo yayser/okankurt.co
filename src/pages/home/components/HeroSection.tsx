@@ -1,13 +1,48 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   const [videoReady, setVideoReady] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVideoReady(true), 1200);
-    return () => clearTimeout(timer);
+    // YouTube posts a JSON message on state changes once it knows we're "listening".
+    // info === 1 means the video is actually playing — that's the exact moment to reveal it.
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== "https://www.youtube.com") return;
+      try {
+        const data = JSON.parse(event.data);
+        if (data.event === "onStateChange" && data.info === 1) {
+          setVideoReady(true);
+        }
+      } catch {
+        // Non-JSON message from another source — ignore.
+      }
+    };
+    window.addEventListener("message", handleMessage);
+
+    // Safety net: reveal the video anyway if the player never reports "playing"
+    // (slow connection, blocked embed, etc.) so it doesn't stay hidden forever.
+    const fallback = setTimeout(() => setVideoReady(true), 2500);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+      clearTimeout(fallback);
+    };
   }, []);
+
+  const handleIframeLoad = () => {
+    const askToListen = () =>
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "listening", id: "hero-video" }),
+        "https://www.youtube.com"
+      );
+    // Send a few times shortly after load — the player isn't always ready
+    // to receive it on the very first try.
+    askToListen();
+    setTimeout(askToListen, 200);
+    setTimeout(askToListen, 600);
+  };
 
   const handleScrollDown = () => {
     const el = document.getElementById("portfolio");
@@ -20,6 +55,8 @@ export default function HeroSection() {
       <div className="relative w-full lg:w-[55%] h-[50vh] lg:h-auto overflow-hidden">
         {/* YouTube iframe — cover fill trick */}
         <iframe
+          ref={iframeRef}
+          onLoad={handleIframeLoad}
           src="https://www.youtube.com/embed/2X4pdNTG-PU?autoplay=1&mute=1&loop=1&playlist=2X4pdNTG-PU&controls=0&rel=0&modestbranding=1&playsinline=1&showinfo=0&disablekb=1&iv_load_policy=3&enablejsapi=1&origin=https://okankurt.co"
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
           allowFullScreen
@@ -33,7 +70,7 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Loading cover — hides YouTube's control/play icon flash before autoplay kicks in */}
+        {/* Loading cover — hides YouTube's control/play icon flash until the video actually starts playing */}
         <div
           className={`absolute inset-0 bg-dark-800 pointer-events-none transition-opacity duration-700 ${
             videoReady ? "opacity-0" : "opacity-100"
